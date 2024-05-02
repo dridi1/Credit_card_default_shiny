@@ -356,4 +356,3 @@ PAY_6 = as.factor(ifelse(input$PAY_6 == "No payment", -2,
 
 # Run the application
 shinyApp(ui = ui, server = server)
-
