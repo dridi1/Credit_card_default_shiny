@@ -4,9 +4,10 @@ library(shinythemes)
 library(bslib)
 library(shinythemes)
 library(shinyWidgets)
+library(shinydashboard)
+library(shinydashboardPlus)
 library(bsicons)
 library(hover)
-library(htmltools)
 load("model_logistic.RData") 
 
 
@@ -20,7 +21,7 @@ backgroundcolor<-setBackgroundColor(
 )
 
 
-#the UI for the application
+# Define the UI for the application
 ui <- page_sidebar(
                     backgroundcolor,
                     page_fluid(
@@ -170,7 +171,7 @@ ui <- page_sidebar(
 )
 
 
-#the server logic
+# Define the server logic
 server <- function(input, output, session) {
   observeEvent(input$predict_button,{
     nav_select(
@@ -276,18 +277,20 @@ server <- function(input, output, session) {
   })
   observeEvent(input$reset_button, {
     nav_select(
-      "s", selected = "Client Data" 
+      "nav_list", selected = "Client Data" 
         )
     })
   observeEvent(input$go, {
     nav_select(
-      "s", selected = "Client Data" 
+      "nav_list", selected = "Client Data" 
     )
   })
   output$link1 <- renderUI({
+    # Creating a text link
     a("Check out My linkdin", href = "https://www.linkedin.com/in/dridi-slim-415487291/")
   })
   output$link2 <- renderUI({
+    # Creating a text link
     a("Check out My Github", href = "https://github.com/dridi1")
   })
 }
