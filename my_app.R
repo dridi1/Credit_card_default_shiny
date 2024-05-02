@@ -1,18 +1,17 @@
 # Load the required libraries
 library(shiny)
-library(shinythemes)
 library(bslib)
-library(shinythemes)
 library(shinyWidgets)
-library(shinydashboard)
-library(shinydashboardPlus)
 library(bsicons)
 library(hover)
+
+
+#Load the model
 load("model_logistic.RData") 
 
 
 
-
+# setting the background color
 backgroundcolor<-setBackgroundColor(
   color = c("#fffff8","lightblue"),
   gradient = c("radial"),
@@ -77,37 +76,37 @@ ui <- page_sidebar(
                                   column(width = 4,
                                          numericInput("AGE", "Age:", value = 30, min = 21)),
                                   column(width = 4,
-                                         numericInput("BILL_AMT1", "Bill Amount (Month 1):", value = 5000, min = 0))
+                                         numericInput("BILL_AMT6", "Bill Amount (Month 1):", value = 5000, min = 0))
                                 ),
                                 fluidRow(
                                   column(width = 4,
-                                         numericInput("BILL_AMT2", "Bill Amount (Month 2):", value = 5000, min = 0)),
+                                         numericInput("BILL_AMT5", "Bill Amount (Month 2):", value = 5000, min = 0)),
                                   column(width = 4,
-                                         numericInput("BILL_AMT3", "Bill Amount (Month 3):", value = 5000, min = 0)),
+                                         numericInput("BILL_AMT4", "Bill Amount (Month 3):", value = 5000, min = 0)),
                                   column(width = 4,
-                                         numericInput("BILL_AMT4", "Bill Amount (Month 4):", value = 5000, min = 0))
+                                         numericInput("BILL_AMT3", "Bill Amount (Month 4):", value = 5000, min = 0))
                                 ),
                                 fluidRow(
                                   column(width = 4,
-                                         numericInput("BILL_AMT5", "Bill Amount (Month 5):", value = 5000, min = 0)),
+                                         numericInput("BILL_AMT2", "Bill Amount (Month 5):", value = 5000, min = 0)),
                                   column(width = 4,
-                                         numericInput("BILL_AMT6", "Bill Amount (Month 6):", value = 5000, min = 0))
+                                         numericInput("BILL_AMT1", "Bill Amount (Month 6):", value = 5000, min = 0))
                                 ),
                                 fluidRow(
                                   column(width = 4,
-                                         numericInput("PAY_AMT1", "Payment Amount (Month 1):", value = 2000, min = 0)),
+                                         numericInput("PAY_AMT6", "Payment Amount (Month 1):", value = 2000, min = 0)),
                                   column(width = 4,
-                                         numericInput("PAY_AMT2", "Payment Amount (Month 2):", value = 2000, min = 0)),
+                                         numericInput("PAY_AMT5", "Payment Amount (Month 2):", value = 2000, min = 0)),
                                   column(width = 4,
-                                         numericInput("PAY_AMT3", "Payment Amount (Month 3):", value = 2000, min = 0))
+                                         numericInput("PAY_AMT4", "Payment Amount (Month 3):", value = 2000, min = 0))
                                 ),
                                 fluidRow(
                                   column(width = 4,
-                                         numericInput("PAY_AMT4", "Payment Amount (Month 4):", value = 2000, min = 0)),
+                                         numericInput("PAY_AMT3", "Payment Amount (Month 4):", value = 2000, min = 0)),
                                   column(width = 4,
-                                         numericInput("PAY_AMT5", "Payment Amount (Month 5):", value = 2000, min = 0)),
+                                         numericInput("PAY_AMT2", "Payment Amount (Month 5):", value = 2000, min = 0)),
                                   column(width = 4,
-                                         numericInput("PAY_AMT6", "Payment Amount (Month 6):", value = 2000, min = 0))
+                                         numericInput("PAY_AMT1", "Payment Amount (Month 6):", value = 2000, min = 0))
                                 ),
                                 fluidRow(
                                   column(width = 4,
@@ -119,19 +118,19 @@ ui <- page_sidebar(
                                 ),
                                 fluidRow(
                                   column(width = 4,
-                                         selectInput("PAY_1", "Payment Status (Month 1):", choices = c(-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8))),
+                                         selectInput("PAY_1", "Payment Status (Month 1):", choices = c("No payment", "Pay duly", "Payment on time", "Payment delay for one month", "Payment delay for two months", "Payment delay for three months", "Payment delay for four months", "Payment delay for five months", "Payment delay for six months", "Payment delay for seven months", "Payment delay for eight months"))),
                                   column(width = 4,
-                                         selectInput("PAY_2", "Payment Status (Month 2):", choices = c(-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8))),
+                                         selectInput("PAY_2", "Payment Status (Month 2):", choices = c("No payment", "Pay duly", "Payment on time", "Payment delay for one month", "Payment delay for two months", "Payment delay for three months", "Payment delay for four months", "Payment delay for five months", "Payment delay for six months", "Payment delay for seven months", "Payment delay for eight months"))),
                                   column(width = 4,
-                                         selectInput("PAY_3", "Payment Status (Month 3):", choices = c(-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8)))
+                                         selectInput("PAY_3", "Payment Status (Month 3):", choices = c("No payment", "Pay duly", "Payment on time", "Payment delay for one month", "Payment delay for two months", "Payment delay for three months", "Payment delay for four months", "Payment delay for five months", "Payment delay for six months", "Payment delay for seven months", "Payment delay for eight months")))
                                 ),
                                 fluidRow(
                                   column(width = 4,
-                                         selectInput("PAY_4", "Payment Status (Month 4):", choices = c(-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8))),
+                                         selectInput("PAY_4", "Payment Status (Month 4):", choices = c("No payment", "Pay duly", "Payment on time", "Payment delay for one month", "Payment delay for two months", "Payment delay for three months", "Payment delay for four months", "Payment delay for five months", "Payment delay for six months", "Payment delay for seven months", "Payment delay for eight months"))),
                                   column(width = 4,
-                                         selectInput("PAY_5", "Payment Status (Month 5):", choices = c(-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8))),
+                                         selectInput("PAY_5", "Payment Status (Month 5):", choices = c("No payment", "Pay duly", "Payment on time", "Payment delay for one month", "Payment delay for two months", "Payment delay for three months", "Payment delay for four months", "Payment delay for five months", "Payment delay for six months", "Payment delay for seven months", "Payment delay for eight months"))),
                                   column(width = 4,
-                                         selectInput("PAY_6", "Payment Status (Month 6):", choices = c(-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8)))
+                                         selectInput("PAY_6", "Payment Status (Month 6):", choices = c("No payment", "Pay duly", "Payment on time", "Payment delay for one month", "Payment delay for two months", "Payment delay for three months", "Payment delay for four months", "Payment delay for five months", "Payment delay for six months", "Payment delay for seven months", "Payment delay for eight months")))
                                 ),
                                 fluidRow(
                                   column(width = 4,
@@ -222,14 +221,74 @@ server <- function(input, output, session) {
                                    ifelse(input$EDUCATION == "University", "2",
                                           ifelse(input$EDUCATION == "High School", "3", "4")))), # Map Education levels
       MARRIAGE = as.factor(ifelse(input$MARRIAGE == "Married", "1", "2")),
-      PAY_1 = as.factor(input$PAY_1),
-      PAY_2 = as.factor(input$PAY_2),
-      PAY_3 = as.factor(input$PAY_3),
-      PAY_4 = as.factor(input$PAY_4),
-      PAY_5 = as.factor(input$PAY_5),
-      PAY_6 = as.factor(input$PAY_6)
-    )
+      PAY_1 = as.factor(ifelse(input$PAY_1 == "No payment", -2,
+                               ifelse(input$PAY_1 == "Pay duly", -1,
+                                      ifelse(input$PAY_1 == "Payment on time", 0,
+                                             ifelse(input$PAY_1 == "Payment delay for one month", 1,
+                                                    ifelse(input$PAY_1 == "Payment delay for two months", 2,
+                                                           ifelse(input$PAY_1 == "Payment delay for three months", 3,
+                                                                  ifelse(input$PAY_1 == "Payment delay for four months", 4,
+                                                                         ifelse(input$PAY_1 == "Payment delay for five months", 5,
+                                                                                ifelse(input$PAY_1 == "Payment delay for six months", 6,
+                                                                                       ifelse(input$PAY_1 == "Payment delay for seven months", 7,
+                                                                                              ifelse(input$PAY_1 == "Payment delay for eight months", 8)))))))))))),
+    PAY_2 = as.factor(ifelse(input$PAY_2 == "No payment", -2,
+                             ifelse(input$PAY_2 == "Pay duly", -1,
+                                    ifelse(input$PAY_2 == "Payment on time", 0,
+                                           ifelse(input$PAY_2 == "Payment delay for one month", 1,
+                                                  ifelse(input$PAY_2 == "Payment delay for two months", 2,
+                                                         ifelse(input$PAY_2 == "Payment delay for three months", 3,
+                                                                ifelse(input$PAY_2 == "Payment delay for four months", 4,
+                                                                       ifelse(input$PAY_2 == "Payment delay for five months", 5,
+                                                                              ifelse(input$PAY_2 == "Payment delay for six months", 6,
+                                                                                     ifelse(input$PAY_2 == "Payment delay for seven months", 7,
+                                                                                            ifelse(input$PAY_2 == "Payment delay for eight months", 8)))))))))))),
+  PAY_3 = as.factor(ifelse(input$PAY_3 == "No payment", -2,
+                           ifelse(input$PAY_3 == "Pay duly", -1,
+                                  ifelse(input$PAY_3 == "Payment on time", 0,
+                                         ifelse(input$PAY_3 == "Payment delay for one month", 1,
+                                                ifelse(input$PAY_3 == "Payment delay for two months", 2,
+                                                       ifelse(input$PAY_3 == "Payment delay for three months", 3,
+                                                              ifelse(input$PAY_3 == "Payment delay for four months", 4,
+                                                                     ifelse(input$PAY_3 == "Payment delay for five months", 5,
+                                                                            ifelse(input$PAY_3 == "Payment delay for six months", 6,
+                                                                                   ifelse(input$PAY_3 == "Payment delay for seven months", 7,
+                                                                                          ifelse(input$PAY_3 == "Payment delay for eight months", 8)))))))))))),
+PAY_4 = as.factor(ifelse(input$PAY_4 == "No payment", -2,
+                         ifelse(input$PAY_4 == "Pay duly", -1,
+                                ifelse(input$PAY_4 == "Payment on time", 0,
+                                       ifelse(input$PAY_4 == "Payment delay for one month", 1,
+                                              ifelse(input$PAY_4 == "Payment delay for two months", 2,
+                                                     ifelse(input$PAY_4 == "Payment delay for three months", 3,
+                                                            ifelse(input$PAY_4 == "Payment delay for four months", 4,
+                                                                   ifelse(input$PAY_4 == "Payment delay for five months", 5,
+                                                                          ifelse(input$PAY_4 == "Payment delay for six months", 6,
+                                                                                 ifelse(input$PAY_4 == "Payment delay for seven months", 7,
+                                                                                        ifelse(input$PAY_4 == "Payment delay for eight months", 8)))))))))))),
+PAY_5 = as.factor(ifelse(input$PAY_5 == "No payment", -2,
+                         ifelse(input$PAY_5 == "Pay duly", -1,
+                                ifelse(input$PAY_5 == "Payment on time", 0,
+                                       ifelse(input$PAY_5 == "Payment delay for one month", 1,
+                                              ifelse(input$PAY_5 == "Payment delay for two months", 2,
+                                                     ifelse(input$PAY_5 == "Payment delay for three months", 3,
+                                                            ifelse(input$PAY_5 == "Payment delay for four months", 4,
+                                                                   ifelse(input$PAY_5 == "Payment delay for five months", 5,
+                                                                          ifelse(input$PAY_5 == "Payment delay for six months", 6,
+                                                                                 ifelse(input$PAY_5 == "Payment delay for seven months", 7,
+                                                                                        ifelse(input$PAY_5 == "Payment delay for eight months", 8)))))))))))),
+PAY_6 = as.factor(ifelse(input$PAY_6 == "No payment", -2,
+                         ifelse(input$PAY_6 == "Pay duly", -1,
+                                ifelse(input$PAY_6 == "Payment on time", 0,
+                                       ifelse(input$PAY_6 == "Payment delay for one month", 1,
+                                              ifelse(input$PAY_6 == "Payment delay for two months", 2,
+                                                     ifelse(input$PAY_6 == "Payment delay for three months", 3,
+                                                            ifelse(input$PAY_6 == "Payment delay for four months", 4,
+                                                                   ifelse(input$PAY_6 == "Payment delay for five months", 5,
+                                                                          ifelse(input$PAY_6 == "Payment delay for six months", 6,
+                                                                                 ifelse(input$PAY_6 == "Payment delay for seven months", 7,
+                                                                                        ifelse(input$PAY_6 == "Payment delay for eight months", 8))))))))))))
     
+    )
     print(input_data)  # Print input data for debugging
     
     # Make prediction using the pre-trained model
@@ -265,12 +324,12 @@ server <- function(input, output, session) {
     updateSelectInput(session, "SEX", selected = "Male")
     updateSelectInput(session, "EDUCATION", selected = "Graduate School")
     updateSelectInput(session, "MARRIAGE", selected = "Married")
-    updateSelectInput(session, "PAY_1", selected = 0)
-    updateSelectInput(session, "PAY_2", selected = 0)
-    updateSelectInput(session, "PAY_3", selected = 0)
-    updateSelectInput(session, "PAY_4", selected = 0)
-    updateSelectInput(session, "PAY_5", selected = 0)
-    updateSelectInput(session, "PAY_6", selected = 0)
+    updateSelectInput(session, "PAY_1", selected = "No payment")
+    updateSelectInput(session, "PAY_2", selected = "No payment")
+    updateSelectInput(session, "PAY_3", selected = "No payment")
+    updateSelectInput(session, "PAY_4", selected = "No payment")
+    updateSelectInput(session, "PAY_5", selected = "No payment")
+    updateSelectInput(session, "PAY_6", selected = "No payment")
     
     # Update the prediction result text
     output$prediction_result <- renderPrint({ "Let's try again!!" })
